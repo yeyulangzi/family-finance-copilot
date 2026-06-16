@@ -131,13 +131,32 @@ family-finance-copilot/
 
 ## 安装方式
 
-先选你正在使用的 Agent 工具。如果不确定，直接用“手动安装”，只要工具支持 `SKILL.md` 格式就能用。
+最简单的方式：把这个 README 或 GitHub 仓库链接丢给你的 Agent，然后告诉它“我要安装这个 skill”。如果它不能自动处理本地文件，再用下面的 Skills CLI 或手动安装方式。
+
+### 推荐：让你的 Agent 帮你安装
+
+把下面这段话复制给 Codex、Claude Code、Qoder、WorkBuddy，或任何能读取本地文件/GitHub 仓库的 Agent：
+
+```text
+请帮我安装这个 Agent Skill：
+https://github.com/yeyulangzi/family-finance-copilot
+
+请把它作为一个可复用 skill 安装，名称为 family-finance-copilot。请放到我当前 Agent 工具对应的 skills 目录里，确认 SKILL.md 直接位于安装后的 skill 文件夹根部，然后告诉我如何验证安装成功。
+```
+
+如果你下载的是项目文件夹，而不是直接使用 GitHub 链接，就把整个文件夹或 `SKILL.md` 文件发给你的 Agent，然后说：
+
+```text
+我要把这个安装成 Agent Skill。请检查这个文件夹/文件，把它复制到我当前 Agent 工具正确的本地 skills 目录，并帮我验证是否安装成功。
+```
+
+只有当你想自己安装，或你的 Agent 不能操作本地文件时，再看下面的具体路径。
 
 ### 快速选择
 
 | 你使用的工具 | 推荐安装方式 |
 | --- | --- |
-| Codex | 优先用下面的 Skills CLI 命令；手动安装时复制到 `~/.codex/skills/` 或 `~/.agents/skills/` |
+| Codex | 直接让 Codex 帮你安装，或使用下面的 Skills CLI 命令 |
 | Claude Code | 复制到 `~/.claude/skills/family-finance-copilot/` |
 | Qoder / QoderWork | 复制到 `~/.qoder/skills/family-finance-copilot/`，或项目级 `.qoder/skills/` |
 | WorkBuddy | 优先用 SkillHub / 插件市场 / 本地导入；只有版本明确支持时再手动复制 |

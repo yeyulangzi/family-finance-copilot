@@ -131,13 +131,32 @@ family-finance-copilot/
 
 ## Installation
 
-Pick the path that matches the agent tool you use. If you are not sure, use **Manual install**; it works anywhere that understands the `SKILL.md` format.
+Start with the easiest path: give this README or repository link to your agent and ask it to install the skill for you. If that does not work, use the Skills CLI or manual install options below.
+
+### Recommended: Ask Your Agent to Install It
+
+Copy this prompt into Codex, Claude Code, Qoder, WorkBuddy, or any other agent that can read local files or GitHub repositories:
+
+```text
+Please install this Agent Skill for me:
+https://github.com/yeyulangzi/family-finance-copilot
+
+Install it as a reusable skill named family-finance-copilot. Put it in the correct skills directory for the agent tool I am currently using, make sure SKILL.md is directly inside the installed skill folder, then tell me how to verify that it is available.
+```
+
+If you downloaded this project as a folder instead of using the GitHub link, send the folder or `SKILL.md` file to your agent and say:
+
+```text
+I want to install this as an Agent Skill. Please inspect this folder/file, copy it to the correct local skills directory for my agent tool, and help me verify the installation.
+```
+
+Pick a lower-level path only if you want to install it yourself or your agent cannot manage local files.
 
 ### Quick Recommendation
 
 | You use | Recommended install |
 | --- | --- |
-| Codex | Use the Skills CLI command below, or manually copy to `~/.codex/skills/` / `~/.agents/skills/` |
+| Codex | Ask Codex to install it, or use the Skills CLI command below |
 | Claude Code | Copy to `~/.claude/skills/family-finance-copilot/` |
 | Qoder / QoderWork | Copy to `~/.qoder/skills/family-finance-copilot/`, or project `.qoder/skills/` |
 | WorkBuddy | Use its SkillHub/plugin UI first; manual path only if your version exposes one |
