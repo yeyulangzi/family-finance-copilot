@@ -1,0 +1,40 @@
+{
+  "skill_name": "family-finance-copilot",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我在 /tmp/demo-family-finance 下建立一套家庭财务管理工作区，家庭代号写“样例家庭”，基准币种 CNY。不要放任何真实金额，生成后告诉我先填哪些文件。",
+      "expected_output": "Creates a Markdown workspace with intake, profile, IPS/rules, cash-flow, allocation, review, and L1-L5 memory folders; uses placeholders only; explains next intake steps.",
+      "files": [],
+      "assertions": [
+        "Output includes an initialized workspace path.",
+        "Workspace includes 08-记忆系统 with L1-L5 folders.",
+        "Workspace includes household intake, balance sheet, constitution, IPS, and monthly review templates.",
+        "No real personal financial amounts, names, account identifiers, tokens, or credentials are introduced."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我想买一只基金，但我还没整理家庭资产表。请帮我判断现在能不能给买入建议。",
+      "expected_output": "Refuses to provide a strong buy recommendation before household data is complete; lists minimal missing data; suggests using the decision memo once data is available.",
+      "files": [],
+      "assertions": [
+        "Output does not give a buy recommendation.",
+        "Output asks for latest balance sheet date, cash safety, funding source, risk bucket, symbol/code, existing holding, and proposed amount.",
+        "Output explains that missing household safety data blocks formal advice."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "查一下 AAPL 的近期行情，结果要能放进投资 memo 里，必须用免费接口，并标注来源和时间。",
+      "expected_output": "Uses or recommends the free market_data helper; reports source, retrieval time, symbol, caveats, and does not use paid APIs or broker credentials.",
+      "files": [],
+      "assertions": [
+        "Output uses a free/no-key data source such as Stooq, Yahoo public chart data, yfinance, or AKShare.",
+        "Output includes source and retrieval time.",
+        "Output includes caveats about delay, coverage, or research/personal-use limits.",
+        "Output does not request broker login, token, cookie, or paid API key."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Product Architecture</title>
+  <desc id="desc">Architecture diagram for Family Finance Copilot, showing skill entry, setup scripts, templates, finance workspace, market data adapter, decision workflow, and memory layers.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#475569"/>
+    </marker>
+    <style>
+      .label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC", "PingFang SC", Arial, sans-serif; letter-spacing: 0; }
+      .h1 { font-size: 42px; font-weight: 760; fill: #0F172A; }
+      .h2 { font-size: 22px; font-weight: 720; fill: #0F172A; }
+      .body { font-size: 16px; font-weight: 460; fill: #475569; }
+      .tiny { font-size: 13px; font-weight: 520; fill: #64748B; }
+      .white { fill: #FFFFFF; }
+      .box { fill: #FFFFFF; stroke: #CBD5E1; }
+      .soft { fill: #F8FAFC; stroke: #D8E0EA; }
+    </style>
+  </defs>
+  <rect width="1400" height="900" fill="#F8FAFC"/>
+  <text x="70" y="78" class="label h1">Product Architecture</text>
+  <text x="72" y="114" class="label body">Skill instructions, scripts, templates, public market data, and L1-L5 memory.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="160" width="250" height="560" rx="22" fill="#0F172A"/>
+    <text x="104" y="210" class="label h2 white">Agent Host</text>
+    <text x="104" y="246" class="label body white">Claude Code / Codex / Cursor</text>
+    <rect x="104" y="300" width="182" height="64" rx="14" fill="#1E293B"/>
+    <text x="126" y="338" class="label body white">User request</text>
+    <rect x="104" y="400" width="182" height="64" rx="14" fill="#1E293B"/>
+    <text x="126" y="438" class="label body white">Skill trigger</text>
+    <rect x="104" y="500" width="182" height="64" rx="14" fill="#1E293B"/>
+    <text x="126" y="538" class="label body white">Decision support</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="390" y="160" width="300" height="560" rx="22" class="box"/>
+    <text x="428" y="210" class="label h2">Skill Package</text>
+    <text x="428" y="244" class="label body">`family-finance-copilot/`</text>
+    <rect x="428" y="290" width="224" height="58" rx="14" class="soft"/>
+    <text x="452" y="325" class="label body">SKILL.md</text>
+    <rect x="428" y="372" width="224" height="58" rx="14" class="soft"/>
+    <text x="452" y="407" class="label body">references/</text>
+    <rect x="428" y="454" width="224" height="58" rx="14" class="soft"/>
+    <text x="452" y="489" class="label body">templates/</text>
+    <rect x="428" y="536" width="224" height="58" rx="14" class="soft"/>
+    <text x="452" y="571" class="label body">scripts/</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="760" y="160" width="570" height="560" rx="22" class="box"/>
+    <text x="800" y="210" class="label h2">Finance Workspace</text>
+    <text x="800" y="244" class="label body">Markdown vault created by the setup script</text>
+
+    <rect x="800" y="292" width="220" height="90" rx="16" fill="#ECFDF5" stroke="#A7F3D0"/>
+    <text x="826" y="326" class="label h2">Intake</text>
+    <text x="826" y="354" class="label body">profile, assets, cash flow</text>
+
+    <rect x="1070" y="292" width="220" height="90" rx="16" fill="#EFF6FF" stroke="#BFDBFE"/>
+    <text x="1096" y="326" class="label h2">Rules</text>
+    <text x="1096" y="354" class="label body">constitution, IPS, limits</text>
+
+    <rect x="800" y="424" width="220" height="90" rx="16" fill="#FFFBEB" stroke="#FDE68A"/>
+    <text x="826" y="458" class="label h2">Decision</text>
+    <text x="826" y="486" class="label body">memo, checklist, log</text>
+
+    <rect x="1070" y="424" width="220" height="90" rx="16" fill="#FDF2F8" stroke="#FBCFE8"/>
+    <text x="1096" y="458" class="label h2">Market Data</text>
+    <text x="1096" y="486" class="label body">Yahoo, Stooq, AKShare</text>
+
+    <rect x="800" y="556" width="490" height="96" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text x="826" y="590" class="label h2">Memory System</text>
+    <text x="826" y="620" class="label body">L1 Profile · L2 Rules · L3 Projects · L4 Topics · L5 Lessons</text>
+  </g>
+
+  <path d="M320 432 C350 432 360 432 388 432" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M690 432 C720 432 730 432 758 432" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1180 514 C1180 538 1174 548 1156 558" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M910 514 C910 538 918 548 936 558" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="180" y="778" width="1040" height="54" rx="17" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="220" y="812" class="label body">Design constraint: no broker login, no private credentials, no fabricated prices.</text>
+</svg>

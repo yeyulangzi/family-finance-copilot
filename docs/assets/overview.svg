@@ -1,0 +1,90 @@
+<svg width="1400" height="820" viewBox="0 0 1400 820" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Family Finance Copilot Overview</title>
+  <desc id="desc">A professional overview diagram showing how household goals, finance data, rules, decisions, records, and long-term memory form a closed-loop personal finance system.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset="0.52" stop-color="#F3F7F6"/>
+      <stop offset="1" stop-color="#F8F6F1"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="180" y1="120" x2="1220" y2="660" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F766E"/>
+      <stop offset="0.55" stop-color="#1E3A8A"/>
+      <stop offset="1" stop-color="#6B4E16"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#0F172A" flood-opacity="0.12"/>
+    </filter>
+    <filter id="lineShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#334155"/>
+    </marker>
+    <style>
+      .label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC", "PingFang SC", Arial, sans-serif; }
+      .title { font-size: 52px; font-weight: 760; fill: #0F172A; letter-spacing: 0; }
+      .subtitle { font-size: 22px; font-weight: 430; fill: #475569; letter-spacing: 0; }
+      .section { font-size: 24px; font-weight: 720; fill: #0F172A; letter-spacing: 0; }
+      .small { font-size: 17px; font-weight: 460; fill: #475569; letter-spacing: 0; }
+      .tiny { font-size: 14px; font-weight: 520; fill: #64748B; letter-spacing: 0; }
+      .whiteTitle { font-size: 30px; font-weight: 760; fill: #FFFFFF; letter-spacing: 0; }
+      .whiteText { font-size: 17px; font-weight: 470; fill: #DDE8F1; letter-spacing: 0; }
+      .pillText { font-size: 15px; font-weight: 650; fill: #0F172A; letter-spacing: 0; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="820" fill="url(#bg)"/>
+  <rect x="44" y="38" width="1312" height="744" rx="28" fill="#FFFFFF" stroke="#E2E8F0"/>
+
+  <text x="96" y="112" class="label title">Family Finance Copilot</text>
+  <text x="98" y="154" class="label subtitle">把家庭财务从“零散表格与临时判断”</text>
+  <text x="98" y="184" class="label subtitle">变成可追溯、可复盘、可记忆的决策系统</text>
+
+  <rect x="97" y="218" width="214" height="38" rx="19" fill="#ECFDF5" stroke="#A7F3D0"/>
+  <text x="122" y="243" class="label pillText">Markdown-first</text>
+  <rect x="327" y="218" width="190" height="38" rx="19" fill="#EFF6FF" stroke="#BFDBFE"/>
+  <text x="352" y="243" class="label pillText">Agent Skill</text>
+  <rect x="533" y="218" width="230" height="38" rx="19" fill="#FFFBEB" stroke="#FDE68A"/>
+  <text x="558" y="243" class="label pillText">No Broker Login</text>
+
+  <g filter="url(#softShadow)">
+    <rect x="467" y="282" width="466" height="270" rx="26" fill="url(#hero)"/>
+    <text x="538" y="356" class="label whiteTitle">Decision Core</text>
+    <text x="538" y="394" class="label whiteText">家庭安全优先于收益率</text>
+    <text x="538" y="426" class="label whiteText">资金属性先于标的机会</text>
+    <text x="538" y="458" class="label whiteText">风险桶约束先于交易动作</text>
+    <text x="538" y="490" class="label whiteText">记录与记忆先于“我觉得”</text>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="96" y="292" width="274" height="100" rx="18" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text x="124" y="332" class="label section">家庭目标</text>
+    <text x="124" y="365" class="label small">阶段、现金流、保险、负债</text>
+
+    <rect x="96" y="440" width="274" height="100" rx="18" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text x="124" y="480" class="label section">资产事实</text>
+    <text x="124" y="513" class="label small">资产负债表、持仓、数据日期</text>
+
+    <rect x="1030" y="292" width="274" height="100" rx="18" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text x="1058" y="332" class="label section">决策输出</text>
+    <text x="1058" y="365" class="label small">Memo、检查清单、禁止动作</text>
+
+    <rect x="1030" y="440" width="274" height="100" rx="18" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text x="1058" y="480" class="label section">长期记忆</text>
+    <text x="1058" y="513" class="label small">L1-L5 主档、复盘、教训</text>
+  </g>
+
+  <g filter="url(#lineShadow)">
+    <path d="M370 342 C410 342 425 342 463 342" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M370 490 C410 490 425 490 463 490" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M933 342 C972 342 990 342 1026 342" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M933 490 C972 490 990 490 1026 490" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+  </g>
+
+  <rect x="202" y="604" width="996" height="112" rx="20" fill="#0F172A"/>
+  <text x="242" y="640" class="label whiteText">Closed loop</text>
+  <text x="242" y="672" class="label whiteTitle" style="font-size:24px">录入 → 闸门判断 → 公开数据 → 决策记录</text>
+  <text x="242" y="704" class="label whiteTitle" style="font-size:24px">月度复盘 → 长期记忆 → 下一次决策</text>
+  <text x="902" y="642" class="label tiny" fill="#CBD5E1">Reusable household finance workflow</text>
+</svg>

@@ -1,0 +1,23 @@
+{
+  "name": "family-finance-copilot",
+  "display_name": "家庭财务管理副驾驶",
+  "version": "1.0.0",
+  "description": "Reusable Markdown skill for household finance workspace setup, memory management, IPS, allocation, risk buckets, decision memos, reviews, and free/no-key market data lookup.",
+  "language": "zh-CN",
+  "authoring_notes": {
+    "source_framework": "Abstracted from a personal second-brain household finance workflow, with all personal names, balances, holdings, accounts, broker details, and life-specific facts removed.",
+    "writing_standard": "Follows high-quality skill structure: lightweight SKILL.md, progressive references, scripts for deterministic work, templates for reusable outputs, explicit anti-patterns and completion checks.",
+    "privacy": "No credentials, tokens, account identifiers, or real personal financial values are included."
+  },
+  "entrypoints": {
+    "setup": "scripts/init_workspace.py",
+    "market_data": "scripts/market_data.py"
+  },
+  "resources": [
+    "references/framework.md",
+    "references/market_data.md",
+    "templates/",
+    "evals/evals.json"
+  ],
+  "license": "MIT"
+}
