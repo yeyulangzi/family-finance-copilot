@@ -180,6 +180,64 @@ gh skill --help
 
 目录根部必须包含 `SKILL.md`。
 
+### 方式 D：国内常用 Agent 工具
+
+不少国内 Agent 产品也支持 Agent Skills / `SKILL.md` 这一套格式，但具体安装目录会随版本变化。优先使用产品内置的 Skill 市场、插件市场或本地导入功能；只有在产品文档明确本地目录时，再手动复制。
+
+#### WorkBuddy
+
+推荐方式：
+
+1. 打开 WorkBuddy。
+2. 进入技能/插件区域，常见入口名称可能是 SkillHub、Skills、插件、Marketplace。
+3. 如果该仓库已被索引，可以直接搜索 GitHub 仓库地址；如果支持本地导入，就导入整个 `family-finance-copilot/` 文件夹。
+4. 重启或刷新 WorkBuddy。
+5. 用这句话测试：`Use family-finance-copilot to set up a household finance workspace.`
+
+手动兜底方式：
+
+```bash
+mkdir -p ~/.workbuddy/skills
+cp -R family-finance-copilot ~/.workbuddy/skills/
+```
+
+注意：部分 WorkBuddy 版本会把 Skill 当作插件安装到 marketplace 目录，而不是直接读取 `~/.workbuddy/skills`。如果手动复制后看不到 skill，请优先用 WorkBuddy 内置 SkillHub/插件安装方式，或让 WorkBuddy 自己检查当前生效的 skills 目录。
+
+#### Qoder / QoderWork
+
+Qoder 支持用户级和项目级 Skill。常见用户级目录是：
+
+```bash
+mkdir -p ~/.qoder/skills
+cp -R family-finance-copilot ~/.qoder/skills/
+```
+
+然后重启 Qoder，并通过 `/skill` 或产品内的 Skill 面板查看是否已识别。
+
+如果你希望只在某个项目里启用，可以放到项目级 `.qoder/skills/`：
+
+```bash
+mkdir -p .qoder/skills
+cp -R family-finance-copilot .qoder/skills/
+```
+
+检查清单：
+
+- 文件夹名是 `family-finance-copilot`；
+- `SKILL.md` 直接位于该文件夹根部；
+- `SKILL.md` frontmatter 里有 `name` 和 `description`；
+- 已重启工具，或刷新了 skill 索引。
+
+#### 其他兼容 SKILL.md 的工具
+
+如果你使用的工具不在上面列表里，但它支持 Agent Skills：
+
+1. 在设置或文档里找到本地 skills 目录。
+2. 把整个 `family-finance-copilot/` 文件夹复制进去。
+3. 确认 `SKILL.md` 仍在复制后文件夹的根部。
+4. 重启工具。
+5. 让 Agent 使用 `family-finance-copilot`。
+
 ## 快速开始
 
 创建一个新的家庭财务工作区：

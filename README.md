@@ -176,6 +176,62 @@ Common locations:
 
 The folder must include `SKILL.md` at its root.
 
+### Option D: China-Focused Agent Tools
+
+Many China-focused agent products also support the Agent Skills / `SKILL.md` pattern, but their exact install directories can change by product version. Prefer the built-in skill marketplace when available; use manual folder installation only when the product documents or exposes the local skill directory.
+
+#### WorkBuddy
+
+Recommended path:
+
+1. Open WorkBuddy.
+2. Go to the skill/plugin area, often named SkillHub, Skills, Plugins, or Marketplace.
+3. Search for this GitHub repository URL after it is indexed, or import the local `family-finance-copilot/` folder if the UI supports local import.
+4. Restart or reload WorkBuddy.
+5. Test with: `Use family-finance-copilot to set up a household finance workspace.`
+
+Manual fallback:
+
+```bash
+mkdir -p ~/.workbuddy/skills
+cp -R family-finance-copilot ~/.workbuddy/skills/
+```
+
+Some WorkBuddy versions package skills as plugins under marketplace directories instead of reading `~/.workbuddy/skills` directly. If the manual path does not appear in WorkBuddy, use the in-app SkillHub/plugin installer or ask WorkBuddy to inspect its active skills directory.
+
+#### Qoder / QoderWork
+
+Qoder supports user-level and project-level skills. The common user-level layout is:
+
+```bash
+mkdir -p ~/.qoder/skills
+cp -R family-finance-copilot ~/.qoder/skills/
+```
+
+Then restart Qoder and open the skill list with `/skill` or the product's skill panel. If Qoder offers project-level skills, copy the folder into the project's `.qoder/skills/` directory instead:
+
+```bash
+mkdir -p .qoder/skills
+cp -R family-finance-copilot .qoder/skills/
+```
+
+Validation checklist:
+
+- the folder name is `family-finance-copilot`;
+- `SKILL.md` is directly inside that folder;
+- `SKILL.md` has `name` and `description` frontmatter;
+- the product has been restarted or its skill index has been refreshed.
+
+#### General SKILL.md-Compatible Tools
+
+If your tool supports Agent Skills but is not listed above:
+
+1. Find its local skills directory in settings or docs.
+2. Copy the entire `family-finance-copilot/` folder into that directory.
+3. Make sure `SKILL.md` stays at the root of the copied folder.
+4. Restart the tool.
+5. Ask the agent to use `family-finance-copilot`.
+
 ## Quick Start
 
 Create a new household finance workspace:
