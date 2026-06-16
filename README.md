@@ -131,113 +131,159 @@ family-finance-copilot/
 
 ## Installation
 
-### Option A: Install with `npx skills`
+Pick the path that matches the agent tool you use. If you are not sure, use **Manual install**; it works anywhere that understands the `SKILL.md` format.
 
-Yes, once this project is published to GitHub, it should be installable through the Skills CLI if the user's agent host is supported.
+### Quick Recommendation
 
-For a single-skill repository:
+| You use | Recommended install |
+| --- | --- |
+| Codex | Use the Skills CLI command below, or manually copy to `~/.codex/skills/` / `~/.agents/skills/` |
+| Claude Code | Copy to `~/.claude/skills/family-finance-copilot/` |
+| Qoder / QoderWork | Copy to `~/.qoder/skills/family-finance-copilot/`, or project `.qoder/skills/` |
+| WorkBuddy | Use its SkillHub/plugin UI first; manual path only if your version exposes one |
+| Other SKILL.md-compatible tools | Copy the folder to that tool's skills directory |
 
-```bash
-npx skills add yeyulangzi/family-finance-copilot
-```
+### Install with the Skills CLI
 
-If the repository later contains multiple skills:
-
-```bash
-npx skills add yeyulangzi/family-finance-copilot --skill family-finance-copilot
-```
-
-After installation, restart or reload your agent host so it can discover the new skill.
-
-Note: different agent hosts may read skills from different directories. If the CLI installs successfully but your agent cannot see the skill, check the install location and your agent's skill directory.
-
-### Option B: Install with GitHub CLI
-
-GitHub CLI has a `gh skill` command in public preview. Once available in your environment, you can install from a GitHub repository and target a specific agent:
+If you already use the Skills CLI, this is the easiest path. Use `-g` for a user-level install so the skill is available outside one project.
 
 ```bash
-gh skill install yeyulangzi/family-finance-copilot family-finance-copilot --agent codex
-gh skill install yeyulangzi/family-finance-copilot family-finance-copilot --agent claude-code
+# Codex
+npx skills add yeyulangzi/family-finance-copilot -g --agent codex --copy -y
+
+# Claude Code
+npx skills add yeyulangzi/family-finance-copilot -g --agent claude-code --copy -y
+
+# Qoder / QoderWork
+npx skills add yeyulangzi/family-finance-copilot -g --agent qoder --copy -y
 ```
 
-Use `gh skill --help` to confirm the exact flags supported by your installed GitHub CLI version.
-
-### Option C: Manual Install
-
-Copy the skill folder into your agent's skill directory.
-
-Common locations:
+Then restart or reload your agent tool and ask:
 
 ```text
-~/.codex/skills/family-finance-copilot/
-~/.claude/skills/family-finance-copilot/
-~/.agents/skills/family-finance-copilot/
+Use family-finance-copilot to set up a household finance workspace.
 ```
 
-The folder must include `SKILL.md` at its root.
+If the command succeeds but the skill does not appear, your tool may read skills from a different directory. Use the manual install path below for your agent.
 
-### Option D: China-Focused Agent Tools
+Tip: after installation, trust the CLI's `Installation Summary`. For example, current Skills CLI versions place Codex skills under `~/.agents/skills/` when using `--agent codex`.
 
-Many China-focused agent products also support the Agent Skills / `SKILL.md` pattern, but their exact install directories can change by product version. Prefer the built-in skill marketplace when available; use manual folder installation only when the product documents or exposes the local skill directory.
+### Manual Install
 
-#### WorkBuddy
-
-Recommended path:
-
-1. Open WorkBuddy.
-2. Go to the skill/plugin area, often named SkillHub, Skills, Plugins, or Marketplace.
-3. Search for this GitHub repository URL after it is indexed, or import the local `family-finance-copilot/` folder if the UI supports local import.
-4. Restart or reload WorkBuddy.
-5. Test with: `Use family-finance-copilot to set up a household finance workspace.`
-
-Manual fallback:
+Clone the repository:
 
 ```bash
-mkdir -p ~/.workbuddy/skills
-cp -R family-finance-copilot ~/.workbuddy/skills/
+git clone https://github.com/yeyulangzi/family-finance-copilot.git
 ```
 
-Some WorkBuddy versions package skills as plugins under marketplace directories instead of reading `~/.workbuddy/skills` directly. If the manual path does not appear in WorkBuddy, use the in-app SkillHub/plugin installer or ask WorkBuddy to inspect its active skills directory.
-
-#### Qoder / QoderWork
-
-Qoder supports user-level and project-level skills. The common user-level layout is:
+Copy the whole folder into your agent's skills directory:
 
 ```bash
+# Codex
+mkdir -p ~/.codex/skills
+cp -R family-finance-copilot ~/.codex/skills/
+
+# Claude Code
+mkdir -p ~/.claude/skills
+cp -R family-finance-copilot ~/.claude/skills/
+
+# Generic Agent Skills location
+mkdir -p ~/.agents/skills
+cp -R family-finance-copilot ~/.agents/skills/
+```
+
+The final layout should look like this:
+
+```text
+~/.codex/skills/family-finance-copilot/SKILL.md
+```
+
+or:
+
+```text
+~/.claude/skills/family-finance-copilot/SKILL.md
+```
+
+`SKILL.md` must be directly inside the `family-finance-copilot` folder.
+
+### Qoder / QoderWork
+
+For user-level installation:
+
+```bash
+git clone https://github.com/yeyulangzi/family-finance-copilot.git
 mkdir -p ~/.qoder/skills
 cp -R family-finance-copilot ~/.qoder/skills/
 ```
 
-Then restart Qoder and open the skill list with `/skill` or the product's skill panel. If Qoder offers project-level skills, copy the folder into the project's `.qoder/skills/` directory instead:
+For project-level installation:
 
 ```bash
+git clone https://github.com/yeyulangzi/family-finance-copilot.git
 mkdir -p .qoder/skills
 cp -R family-finance-copilot .qoder/skills/
 ```
 
-Validation checklist:
+Restart Qoder, then open the skill list with `/skill` or the product's skill panel. If Qoder reports that a skill is invalid, check that:
 
 - the folder name is `family-finance-copilot`;
 - `SKILL.md` is directly inside that folder;
-- `SKILL.md` has `name` and `description` frontmatter;
-- the product has been restarted or its skill index has been refreshed.
+- `SKILL.md` contains `name` and `description` frontmatter.
 
-#### General SKILL.md-Compatible Tools
+### WorkBuddy
 
-If your tool supports Agent Skills but is not listed above:
+WorkBuddy versions differ in how skills are installed. Use this order:
 
-1. Find its local skills directory in settings or docs.
-2. Copy the entire `family-finance-copilot/` folder into that directory.
-3. Make sure `SKILL.md` stays at the root of the copied folder.
-4. Restart the tool.
-5. Ask the agent to use `family-finance-copilot`.
+1. Open WorkBuddy's SkillHub / Skills / Plugins / Marketplace panel.
+2. Search for this repository or import the local `family-finance-copilot/` folder if local import is supported.
+3. Restart or reload WorkBuddy.
+4. Test with: `Use family-finance-copilot to set up a household finance workspace.`
+
+If your WorkBuddy version documents a local skills directory, you can try:
+
+```bash
+git clone https://github.com/yeyulangzi/family-finance-copilot.git
+mkdir -p ~/.workbuddy/skills
+cp -R family-finance-copilot ~/.workbuddy/skills/
+```
+
+Some WorkBuddy versions package skills as plugins under marketplace directories instead of reading `~/.workbuddy/skills`. If the skill does not appear, use WorkBuddy's built-in SkillHub/plugin installer or ask WorkBuddy to inspect its active skill/plugin directory.
+
+### Optional: GitHub CLI
+
+If your GitHub CLI supports `gh skill`, you can install directly from GitHub:
+
+```bash
+gh skill install yeyulangzi/family-finance-copilot family-finance-copilot --agent codex --scope user
+gh skill install yeyulangzi/family-finance-copilot family-finance-copilot --agent claude-code --scope user
+gh skill install yeyulangzi/family-finance-copilot family-finance-copilot --agent qoder --scope user
+```
+
+Run `gh skill install --help` first to confirm your installed GitHub CLI version supports these flags. `gh skill` is still in preview, so the Skills CLI or manual install is usually the more predictable option.
+
+### Verify Installation
+
+After installing, restart or reload your agent and send:
+
+```text
+Use family-finance-copilot to create a demo household finance workspace under ./demo-vault.
+```
+
+A working install should create or guide you toward:
+
+- a household intake form;
+- a balance sheet;
+- a cash-flow budget;
+- an IPS;
+- decision memo and review templates;
+- an L1-L5 memory folder structure.
 
 ## Quick Start
 
 Create a new household finance workspace:
 
 ```bash
-python scripts/init_workspace.py \
+python3 scripts/init_workspace.py \
   --target ~/FamilyFinanceVault \
   --household-name "Sample Household" \
   --currency CNY

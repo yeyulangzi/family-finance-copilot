@@ -131,119 +131,165 @@ family-finance-copilot/
 
 ## 安装方式
 
-### 方式 A：通过 `npx skills` 安装
+先选你正在使用的 Agent 工具。如果不确定，直接用“手动安装”，只要工具支持 `SKILL.md` 格式就能用。
 
-可以。项目发布到 GitHub 后，只要用户的 agent host 被 Skills CLI 支持，就可以通过 `npx skills` 安装。
+### 快速选择
 
-如果这是单 skill 仓库：
+| 你使用的工具 | 推荐安装方式 |
+| --- | --- |
+| Codex | 优先用下面的 Skills CLI 命令；手动安装时复制到 `~/.codex/skills/` 或 `~/.agents/skills/` |
+| Claude Code | 复制到 `~/.claude/skills/family-finance-copilot/` |
+| Qoder / QoderWork | 复制到 `~/.qoder/skills/family-finance-copilot/`，或项目级 `.qoder/skills/` |
+| WorkBuddy | 优先用 SkillHub / 插件市场 / 本地导入；只有版本明确支持时再手动复制 |
+| 其他兼容 SKILL.md 的工具 | 复制到该工具的 skills 目录 |
 
-```bash
-npx skills add yeyulangzi/family-finance-copilot
-```
+### 通过 Skills CLI 安装
 
-如果未来一个仓库里包含多个 skill：
-
-```bash
-npx skills add yeyulangzi/family-finance-copilot --skill family-finance-copilot
-```
-
-安装后需要重启或刷新 agent host，让它重新发现 skill。
-
-注意：不同 agent 读取 skill 的目录可能不同。如果 CLI 显示安装成功，但 agent 看不到 skill，请检查安装位置和该 agent 的 skill 目录。
-
-### 方式 B：通过 GitHub CLI 安装
-
-GitHub CLI 的 `gh skill` 命令目前处于公开预览。你的环境支持时，可以从 GitHub 仓库安装，并指定目标 agent：
+如果你已经在用 Skills CLI，这是最省事的方式。建议加 `-g` 做用户级安装，这样不只在某一个项目里可用。
 
 ```bash
-gh skill install yeyulangzi/family-finance-copilot family-finance-copilot --agent codex
-gh skill install yeyulangzi/family-finance-copilot family-finance-copilot --agent claude-code
+# Codex
+npx skills add yeyulangzi/family-finance-copilot -g --agent codex --copy -y
+
+# Claude Code
+npx skills add yeyulangzi/family-finance-copilot -g --agent claude-code --copy -y
+
+# Qoder / QoderWork
+npx skills add yeyulangzi/family-finance-copilot -g --agent qoder --copy -y
 ```
 
-请用下面命令确认你当前 GitHub CLI 支持的准确参数：
-
-```bash
-gh skill --help
-```
-
-### 方式 C：手动安装
-
-把整个 skill 文件夹复制到你的 agent skill 目录即可。
-
-常见路径：
+安装后重启或刷新你的 Agent 工具，然后测试：
 
 ```text
-~/.codex/skills/family-finance-copilot/
-~/.claude/skills/family-finance-copilot/
-~/.agents/skills/family-finance-copilot/
+Use family-finance-copilot to set up a household finance workspace.
 ```
 
-目录根部必须包含 `SKILL.md`。
+如果命令成功但工具里看不到 skill，通常是因为该工具读取的 skills 目录和 CLI 安装目录不同。此时请用下面的手动安装方式。
 
-### 方式 D：国内常用 Agent 工具
+提示：安装完成后，以 CLI 输出的 `Installation Summary` 为准。例如当前 Skills CLI 使用 `--agent codex` 时，会把 skill 放到 `~/.agents/skills/`。
 
-不少国内 Agent 产品也支持 Agent Skills / `SKILL.md` 这一套格式，但具体安装目录会随版本变化。优先使用产品内置的 Skill 市场、插件市场或本地导入功能；只有在产品文档明确本地目录时，再手动复制。
+### 手动安装
 
-#### WorkBuddy
-
-推荐方式：
-
-1. 打开 WorkBuddy。
-2. 进入技能/插件区域，常见入口名称可能是 SkillHub、Skills、插件、Marketplace。
-3. 如果该仓库已被索引，可以直接搜索 GitHub 仓库地址；如果支持本地导入，就导入整个 `family-finance-copilot/` 文件夹。
-4. 重启或刷新 WorkBuddy。
-5. 用这句话测试：`Use family-finance-copilot to set up a household finance workspace.`
-
-手动兜底方式：
+先克隆仓库：
 
 ```bash
-mkdir -p ~/.workbuddy/skills
-cp -R family-finance-copilot ~/.workbuddy/skills/
+git clone https://github.com/yeyulangzi/family-finance-copilot.git
 ```
 
-注意：部分 WorkBuddy 版本会把 Skill 当作插件安装到 marketplace 目录，而不是直接读取 `~/.workbuddy/skills`。如果手动复制后看不到 skill，请优先用 WorkBuddy 内置 SkillHub/插件安装方式，或让 WorkBuddy 自己检查当前生效的 skills 目录。
-
-#### Qoder / QoderWork
-
-Qoder 支持用户级和项目级 Skill。常见用户级目录是：
+然后把整个文件夹复制到你的 Agent skills 目录：
 
 ```bash
+# Codex
+mkdir -p ~/.codex/skills
+cp -R family-finance-copilot ~/.codex/skills/
+
+# Claude Code
+mkdir -p ~/.claude/skills
+cp -R family-finance-copilot ~/.claude/skills/
+
+# 通用 Agent Skills 目录
+mkdir -p ~/.agents/skills
+cp -R family-finance-copilot ~/.agents/skills/
+```
+
+最终目录应类似这样：
+
+```text
+~/.codex/skills/family-finance-copilot/SKILL.md
+```
+
+或：
+
+```text
+~/.claude/skills/family-finance-copilot/SKILL.md
+```
+
+重点：`SKILL.md` 必须直接位于 `family-finance-copilot` 文件夹根部。
+
+### Qoder / QoderWork
+
+用户级安装：
+
+```bash
+git clone https://github.com/yeyulangzi/family-finance-copilot.git
 mkdir -p ~/.qoder/skills
 cp -R family-finance-copilot ~/.qoder/skills/
 ```
 
-然后重启 Qoder，并通过 `/skill` 或产品内的 Skill 面板查看是否已识别。
-
-如果你希望只在某个项目里启用，可以放到项目级 `.qoder/skills/`：
+项目级安装：
 
 ```bash
+git clone https://github.com/yeyulangzi/family-finance-copilot.git
 mkdir -p .qoder/skills
 cp -R family-finance-copilot .qoder/skills/
 ```
 
-检查清单：
+重启 Qoder，然后通过 `/skill` 或产品里的 Skill 面板查看是否已识别。如果提示无效，检查：
 
-- 文件夹名是 `family-finance-copilot`；
-- `SKILL.md` 直接位于该文件夹根部；
-- `SKILL.md` frontmatter 里有 `name` 和 `description`；
-- 已重启工具，或刷新了 skill 索引。
+- 文件夹名是否为 `family-finance-copilot`；
+- `SKILL.md` 是否直接在该文件夹根部；
+- `SKILL.md` frontmatter 是否包含 `name` 和 `description`。
 
-#### 其他兼容 SKILL.md 的工具
+### WorkBuddy
 
-如果你使用的工具不在上面列表里，但它支持 Agent Skills：
+WorkBuddy 不同版本的安装方式可能不同，建议按这个顺序：
 
-1. 在设置或文档里找到本地 skills 目录。
-2. 把整个 `family-finance-copilot/` 文件夹复制进去。
-3. 确认 `SKILL.md` 仍在复制后文件夹的根部。
-4. 重启工具。
-5. 让 Agent 使用 `family-finance-copilot`。
+1. 打开 WorkBuddy 的 SkillHub / Skills / 插件 / Marketplace 面板。
+2. 搜索这个仓库，或在支持本地导入时导入整个 `family-finance-copilot/` 文件夹。
+3. 重启或刷新 WorkBuddy。
+4. 测试：`Use family-finance-copilot to set up a household finance workspace.`
+
+如果你的 WorkBuddy 版本明确支持本地 skills 目录，可以尝试：
+
+```bash
+git clone https://github.com/yeyulangzi/family-finance-copilot.git
+mkdir -p ~/.workbuddy/skills
+cp -R family-finance-copilot ~/.workbuddy/skills/
+```
+
+注意：部分 WorkBuddy 版本会把 Skill 当作插件安装到 marketplace 目录，而不是直接读取 `~/.workbuddy/skills`。如果复制后看不到，请优先使用 WorkBuddy 内置 SkillHub/插件安装方式，或让 WorkBuddy 检查当前生效的 skill/plugin 目录。
+
+### 可选：GitHub CLI
+
+如果你的 GitHub CLI 支持 `gh skill`，可以直接从 GitHub 安装：
+
+```bash
+gh skill install yeyulangzi/family-finance-copilot family-finance-copilot --agent codex --scope user
+gh skill install yeyulangzi/family-finance-copilot family-finance-copilot --agent claude-code --scope user
+gh skill install yeyulangzi/family-finance-copilot family-finance-copilot --agent qoder --scope user
+```
+
+请先运行下面命令确认你的 GitHub CLI 版本支持这些参数：
+
+```bash
+gh skill install --help
+```
+
+`gh skill` 仍处于 preview，参数可能变化；如果你想要更稳，优先用 Skills CLI 或手动安装。
+
+### 验证是否安装成功
+
+安装后，重启或刷新 Agent 工具，然后发送：
+
+```text
+Use family-finance-copilot to create a demo household finance workspace under ./demo-vault.
+```
+
+如果安装成功，Agent 应该能创建或引导你创建：
+
+- 家庭基础信息录入表；
+- 资产负债表；
+- 现金流预算；
+- IPS；
+- 投资决策 Memo 和复盘模板；
+- L1-L5 记忆目录结构。
 
 ## 快速开始
 
 创建一个新的家庭财务工作区：
 
 ```bash
-python scripts/init_workspace.py \
+python3 scripts/init_workspace.py \
   --target ~/FamilyFinanceVault \
   --household-name "Sample Household" \
   --currency CNY
